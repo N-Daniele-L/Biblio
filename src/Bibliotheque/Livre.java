@@ -1,5 +1,6 @@
-package Bibliotheque;
+package bibliotheque;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Livre extends Ouvrage{
@@ -9,8 +10,8 @@ public class Livre extends Ouvrage{
     private String resume;
 
 
-    public Livre(String titre, int ageMin, String dateParution, TypeOuvrage to, double prixLocation, String langue, String genre,String isbn,int nbrePages,TypeLivre tl,String resume) {
-        super(titre, ageMin, dateParution, to, prixLocation, langue, genre);
+    public Livre(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, String isbn, int nbrePages, TypeLivre tl, String resume) {
+        super(titre, ageMin, dateParution, TypeOuvrage.LIVRE, prixLocation, langue, genre);
         this.isbn=isbn;
         this.nbrePages=nbrePages;
         this.tl=tl;
