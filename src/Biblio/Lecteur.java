@@ -1,35 +1,36 @@
 package Biblio;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Lecteur {
-    private long numLecteur;
-    private String nom;
-    private String prenom;
-    private String dateNaiss;
-    private String mail;
+    private int numlecteur;
+    private  String nom,prenom;
+    private LocalDate dn;
     private String adresse;
+    private String mail;
     private String tel;
-    private List<Location> llocation = new ArrayList<>();
 
-    public Lecteur(long numLecteur, String nom, String prenom, String dateNaiss, String mail, String adresse, String tel) {
-        this.numLecteur = numLecteur;
+    private List<Location> lloc=new ArrayList<>();
+
+    public Lecteur(int numlecteur, String nom, String prenom, LocalDate dn, String adresse, String mail, String tel) {
+        this.numlecteur = numlecteur;
         this.nom = nom;
         this.prenom = prenom;
-        this.dateNaiss = dateNaiss;
-        this.mail = mail;
+        this.dn = dn;
         this.adresse = adresse;
+        this.mail = mail;
         this.tel = tel;
     }
 
-    public long getNumLecteur() {
-        return numLecteur;
+    public int getNumlecteur() {
+        return numlecteur;
     }
 
-    public void setNumLecteur(long numLecteur) {
-        this.numLecteur = numLecteur;
+    public void setNumlecteur(int numlecteur) {
+        this.numlecteur = numlecteur;
     }
 
     public String getNom() {
@@ -48,20 +49,12 @@ public class Lecteur {
         this.prenom = prenom;
     }
 
-    public String getDateNaiss() {
-        return dateNaiss;
+    public LocalDate getDn() {
+        return dn;
     }
 
-    public void setDateNaiss(String dateNaiss) {
-        this.dateNaiss = dateNaiss;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
+    public void setDn(LocalDate dn) {
+        this.dn = dn;
     }
 
     public String getAdresse() {
@@ -72,6 +65,14 @@ public class Lecteur {
         this.adresse = adresse;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public String getTel() {
         return tel;
     }
@@ -80,12 +81,25 @@ public class Lecteur {
         this.tel = tel;
     }
 
-    public List<Location> getLlocation() {
-        return llocation;
+    public List<Location> getLloc() {
+        return lloc;
     }
 
-    public void setLlocation(List<Location> llocation) {
-        this.llocation = llocation;
+    public void setLloc(List<Location> lloc) {
+        this.lloc = lloc;
+    }
+
+    @Override
+    public String toString() {
+        return "Lecteur{" +
+                "numlecteur=" + numlecteur +
+                ", nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", dn=" + dn +
+                ", adresse='" + adresse + '\'' +
+                ", mail='" + mail + '\'' +
+                ", tel='" + tel + '\'' +
+                '}';
     }
 
     @Override
@@ -93,11 +107,11 @@ public class Lecteur {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lecteur lecteur = (Lecteur) o;
-        return numLecteur == lecteur.numLecteur;
+        return numlecteur == lecteur.numlecteur;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numLecteur);
+        return Objects.hash(numlecteur);
     }
 }

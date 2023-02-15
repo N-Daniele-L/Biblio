@@ -1,18 +1,18 @@
 package Biblio;
 
-import java.util.List;
+import java.time.LocalDate;
 import java.util.Objects;
 
-public class CD extends Ouvrage{
+public class CD extends Ouvrage {
     private long code;
     private byte nbrePlages;
     private String dureeTotale;
 
-    public CD(String titre, byte ageMin, String dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre, List<Auteur> lauteur, long code, byte nbrePlages, String dureeTotale) {
-        super(titre, ageMin, dateParution, typeOuvrage, prixLocation, langue, genre, lauteur);
-        this.code = code;
-        this.nbrePlages = nbrePlages;
-        this.dureeTotale = dureeTotale;
+    public CD(String titre, int ageMin, LocalDate dateParution, TypeOuvrage to, double prixLocation, String langue, String genre, long code, byte nbrePlages, String dureeTotale) {
+        super(titre, ageMin, dateParution, TypeOuvrage.CD, prixLocation, langue, genre);
+        this.code=code;
+        this.nbrePlages=nbrePlages;
+        this.dureeTotale=dureeTotale;
     }
 
     public long getCode() {
@@ -50,5 +50,14 @@ public class CD extends Ouvrage{
     @Override
     public int hashCode() {
         return Objects.hash(code);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+"CD{" +
+                "code=" + code +
+                ", nbrePlages=" + nbrePlages +
+                ", dureeTotale='" + dureeTotale + '\'' +
+                "} " + super.toString();
     }
 }

@@ -1,20 +1,22 @@
 package Biblio;
 
-import java.util.List;
+import java.time.LocalDate;
 import java.util.Objects;
 
 public class Livre extends Ouvrage {
     private String isbn;
-    private int nombrePages;
-    private TypeLivre typleLivre;
+    private int nbrePages;
+    private TypeLivre tl;
     private String resume;
 
-    public Livre(String titre, byte ageMin, String dateParution, TypeOuvrage typeOuvrage, double prixLocation, String langue, String genre, List<Auteur> lauteur, String isbn, int nombrePages, TypeLivre typleLivre, String resume) {
-        super(titre, ageMin, dateParution, typeOuvrage, prixLocation, langue, genre, lauteur);
-        this.isbn = isbn;
-        this.nombrePages = nombrePages;
-        this.typleLivre = typleLivre;
-        this.resume = resume;
+
+    public Livre(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, String isbn, int nbrePages, TypeLivre tl, String resume) {
+        super(titre, ageMin, dateParution, TypeOuvrage.LIVRE, prixLocation, langue, genre);
+        this.isbn=isbn;
+        this.nbrePages=nbrePages;
+        this.tl=tl;
+        this.resume=resume;
+
     }
 
     public String getIsbn() {
@@ -25,20 +27,20 @@ public class Livre extends Ouvrage {
         this.isbn = isbn;
     }
 
-    public int getNombrePages() {
-        return nombrePages;
+    public int getNbrePages() {
+        return nbrePages;
     }
 
-    public void setNombrePages(int nombrePages) {
-        this.nombrePages = nombrePages;
+    public void setNbrePages(int nbrePages) {
+        this.nbrePages = nbrePages;
     }
 
-    public TypeLivre getTypleLivre() {
-        return typleLivre;
+    public TypeLivre getTl() {
+        return tl;
     }
 
-    public void setTypleLivre(TypeLivre typleLivre) {
-        this.typleLivre = typleLivre;
+    public void setTl(TypeLivre tl) {
+        this.tl = tl;
     }
 
     public String getResume() {
@@ -60,5 +62,15 @@ public class Livre extends Ouvrage {
     @Override
     public int hashCode() {
         return Objects.hash(isbn);
+    }
+
+    @Override
+    public String toString() {
+        return super.toString()+ "Livre{" +
+                "isbn='" + isbn + '\'' +
+                ", nbrePages=" + nbrePages +
+                ", tl=" + tl +
+                ", resume='" + resume + '\'' +
+                "} " + super.toString();
     }
 }

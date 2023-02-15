@@ -1,5 +1,5 @@
 package Biblio;
 
 public enum TypeOuvrage {
-    LIVRE,CD,DVD;
+    LIVRE,CD,DVD
 }

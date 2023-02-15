@@ -2,18 +2,17 @@ package Biblio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Auteur {
-    private String nom;
-    private String prenom;
+    private String nom, prenom;
     private String nationalite;
-    private List<Ouvrage> louvrage= new ArrayList<>();
+    private List<Ouvrage> louvrage = new ArrayList<>();
 
-    public Auteur(String nom, String prenom, String nationalite, List<Ouvrage> louvrage) {
+    public Auteur(String nom, String prenom, String nationalite) {
         this.nom = nom;
         this.prenom = prenom;
         this.nationalite = nationalite;
-        this.louvrage = louvrage;
     }
 
     public String getNom() {
@@ -46,5 +45,41 @@ public class Auteur {
 
     public void setLouvrage(List<Ouvrage> louvrage) {
         this.louvrage = louvrage;
+    }
+
+    public void addLouvrage(List<Ouvrage> louvrage) {
+        setLouvrage(louvrage);
+        for (Ouvrage ouvr: louvrage) {
+            ouvr.setAuteur(this);
+        }
+        // ne fonctionne pas avec une liste d'auteur
+    }
+    public void removeLouvrage() {
+        setLouvrage(null);
+        for (Ouvrage ouvr: louvrage) {
+            ouvr.setAuteur(null);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Auteur auteur = (Auteur) o;
+        return Objects.equals(nom, auteur.nom) && Objects.equals(prenom, auteur.prenom) && Objects.equals(nationalite, auteur.nationalite);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nom, prenom, nationalite);
+    }
+
+    @Override
+    public String toString() {
+        return "Auteur{" +
+                "nom='" + nom + '\'' +
+                ", prenom='" + prenom + '\'' +
+                ", nationalite='" + nationalite + '\'' +
+                '}';
     }
 }

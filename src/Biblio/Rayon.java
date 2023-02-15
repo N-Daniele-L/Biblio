@@ -3,41 +3,14 @@ package Biblio;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 public class Rayon {
     private String codeRayon;
     private String genre;
-    private List<Exemplaire> lexemplaire = new ArrayList<>();
-
+    private List<Exemplaire> lex = new ArrayList<>();
     public Rayon(String codeRayon, String genre) {
         this.codeRayon = codeRayon;
         this.genre = genre;
     }
-
-    public String getCodeRayon() {
-        return codeRayon;
-    }
-
-    public void setCodeRayon(String codeRayon) {
-        this.codeRayon = codeRayon;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public List<Exemplaire> getLexemplaire() {
-        return lexemplaire;
-    }
-
-    public void setLexemplaire(List<Exemplaire> lexemplaire) {
-        this.lexemplaire = lexemplaire;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -45,9 +18,48 @@ public class Rayon {
         Rayon rayon = (Rayon) o;
         return Objects.equals(codeRayon, rayon.codeRayon);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(codeRayon);
+    }
+    @Override
+    public String toString() {
+        return "Rayon{" +
+                "codeRayon='" + codeRayon + '\'' +
+                ", genre='" + genre + '\'' +
+                '}';
+    }
+    public String getCodeRayon() {
+        return codeRayon;
+    }
+    public void setCodeRayon(String codeRayon) {
+        this.codeRayon = codeRayon;
+    }
+    public String getGenre() {
+        return genre;
+    }
+    public void setGenre(String genre) {
+        this.genre = genre;
+    }
+    public List<Exemplaire> getLex() {
+        return lex;
+    }
+    public void setLex(List<Exemplaire> lex) {
+        this.lex = lex;
+    }
+    public void addExemplaire(List<Exemplaire> ex){
+        setLex(ex);
+        ex.get(0).setRayon(this);
+        /*
+        for (Exemplaire e: ex) {
+            e.setRayon(this);
+        }
+        */
+    }
+    public void removeExemplaire(){
+        setLex(null);
+        for (Exemplaire e : lex){
+            e.setRayon(null);
+        }
     }
 }
