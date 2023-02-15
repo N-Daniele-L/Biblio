@@ -1,4 +1,4 @@
-package bibliotheque;
+package Bibliotheque;
 
 import java.util.ArrayList;
 import java.util.List;
