@@ -47,18 +47,13 @@ public class Auteur {
         this.louvrage = louvrage;
     }
 
-    public void addLouvrage(List<Ouvrage> louvrage) {
-        setLouvrage(louvrage);
-        for (Ouvrage ouvr: louvrage) {
-            ouvr.setAuteur(this);
-        }
-        // ne fonctionne pas avec une liste d'auteur
+    public void addLouvrage(Ouvrage o){
+        louvrage.add(o);
+        o.getLauteurs().add(this);
     }
-    public void removeLouvrage() {
-        setLouvrage(null);
-        for (Ouvrage ouvr: louvrage) {
-            ouvr.setAuteur(null);
-        }
+    public void removeLouvrage(Ouvrage o) {
+        louvrage.remove(o);
+        o.getLauteurs().remove(this);
     }
 
     @Override

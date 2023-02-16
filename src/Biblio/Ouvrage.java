@@ -111,11 +111,13 @@ public abstract class Ouvrage {
                 ", genre='" + genre + '\'' +
                 '}';
     }
-
-    public void setAuteur(Auteur auteur) {
-        this.auteur = auteur;
+    public List<Exemplaire> listerExemplaires(){
+        //TODO
+        return null;
     }
-    public Auteur getAuteur() {
-        return auteur;
+    public List<Exemplaire> listerExemplaires(boolean enLocation){
+        //TODO
+        return null;
     }
+    public abstract double amendeRetard(int njours);
 }

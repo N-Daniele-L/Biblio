@@ -86,4 +86,33 @@ public class Exemplaire {
                 ", rayon=" + rayon +
                 '}';
     }
+    public void modifierEtat(String etat){
+        //TODO
+    }
+    public Lecteur lecteurActuel(){
+        //TODO
+        return null;
+    }
+    public List<Lecteur> lecteurs(){
+        //TODO
+        return null;
+    }
+    public void envoiMailLecteurActuel(Mail mail){
+        //TODO
+    }
+    public void envoiMailLecteur(Mail mail){
+        //TODO
+    }
+    public boolean enRetard(){
+        //TODO
+        return enRetard();
+    }
+    public int joursRetard(){
+        //TODO
+        return 0;
+    }
+    public boolean enLocation(){
+        //TODO
+        return enLocation();
+    }
 }

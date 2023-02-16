@@ -47,19 +47,16 @@ public class Rayon {
     public void setLex(List<Exemplaire> lex) {
         this.lex = lex;
     }
-    public void addExemplaire(List<Exemplaire> ex){
-        setLex(ex);
-        ex.get(0).setRayon(this);
-        /*
-        for (Exemplaire e: ex) {
-            e.setRayon(this);
-        }
-        */
+    public void addExemplaire(Exemplaire ex){
+        lex.add(ex);
+        ex.setRayon(this);
     }
-    public void removeExemplaire(){
-        setLex(null);
-        for (Exemplaire e : lex){
-            e.setRayon(null);
-        }
+    public void removeExemplaire(Exemplaire ex){
+        lex.remove(ex);
+        ex.setRayon(null);
+    }
+    public List<Exemplaire> listerExamplaires(){
+        //TODO
+        return null;
     }
 }
