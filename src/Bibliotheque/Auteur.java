@@ -1,6 +1,5 @@
 package Bibliotheque;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -47,6 +46,8 @@ public class Auteur {
     public void setLouvrage(List<Ouvrage> louvrage) {
         this.louvrage = louvrage;
     }
+
+
 
     @Override
     public boolean equals(Object o) {
