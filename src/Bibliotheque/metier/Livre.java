@@ -1,4 +1,4 @@
-package Bibliotheque;
+package Bibliotheque.metier;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -57,12 +57,10 @@ public class Livre extends Ouvrage{
         Livre livre = (Livre) o;
         return Objects.equals(isbn, livre.isbn);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(isbn);
     }
-
     @Override
     public String toString() {
         return super.toString()+ "Livre{" +
@@ -71,5 +69,9 @@ public class Livre extends Ouvrage{
                 ", tl=" + tl +
                 ", resume='" + resume + '\'' +
                 "} " + super.toString();
+    }
+    @Override
+    public double amendeRetard(int njours) {
+        return njours*5;
     }
 }

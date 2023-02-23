@@ -1,4 +1,4 @@
-package Bibliotheque;
+package Bibliotheque.metier;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -59,6 +59,10 @@ public class DVD extends Ouvrage{
         this.sousTitres = sousTitres;
     }
 
+    @Override
+    public double amendeRetard(int njours) {
+        return njours*4;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

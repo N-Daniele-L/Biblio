@@ -1,4 +1,4 @@
-package Bibliotheque;
+package Bibliotheque.metier;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,15 @@ public class Rayon {
                 ", genre='" + genre + '\'' +
                 '}';
     }
+    public void addExemplaire(Exemplaire e){
+        lex.add(e);
+        e.setRayon(this);
+    }
 
+    public void remove(Exemplaire e){
+        lex.remove(e);
+        e.setRayon(null);
+    }
     public String getCodeRayon() {
         return codeRayon;
     }
@@ -59,6 +67,10 @@ public class Rayon {
         this.lex = lex;
     }
 
+    public List<Exemplaire>listerExemplaires(){
+        //TODO lister exemplaires rayon
+        return null;
+    }
 
 
 }

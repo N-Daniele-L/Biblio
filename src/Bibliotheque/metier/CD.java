@@ -1,4 +1,4 @@
-package Bibliotheque;
+package Bibliotheque.metier;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -39,6 +39,10 @@ public class CD extends Ouvrage{
         this.dureeTotale = dureeTotale;
     }
 
+    @Override
+    public double amendeRetard(int njours) {
+        return njours*3;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

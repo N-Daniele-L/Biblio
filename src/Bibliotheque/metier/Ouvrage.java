@@ -1,4 +1,4 @@
-package Bibliotheque;
+package Bibliotheque.metier;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ public abstract class Ouvrage {
     protected String langue;
     protected String genre;
 
-    protected List<Auteur> lauteurs=new ArrayList<>();
+    protected List<Auteur> lauteurs = new ArrayList<>();
     protected List<Exemplaire> lex = new ArrayList<>();
 
 
@@ -97,6 +97,39 @@ public abstract class Ouvrage {
 
     public void setLex(List<Exemplaire> lex) {
         this.lex = lex;
+    }
+
+
+    public abstract double amendeRetard(int njours);
+
+    public void addAuteur(Auteur a) {
+        lauteurs.add(a);
+        a.getLouvrage().add(this);
+    }
+
+    public void remove(Auteur a) {
+        lauteurs.remove(a);
+        a.getLouvrage().remove(this);
+    }
+
+    public void addExemplaire(Exemplaire e) {
+        lex.add(e);
+        e.setOuvrage(this);
+    }
+
+    public void remove(Exemplaire e) {
+        lex.remove(e);
+        e.setOuvrage(null);
+    }
+
+    public List<Exemplaire> listerExemplaires() {
+        //TODO lister exemplaires ouvrage
+        return null;
+    }
+
+    public List<Exemplaire> listerExemplaires(boolean enLocation) {
+        //TODO lister exemplaires ouvrage en location
+        return null;
     }
 
     @Override
