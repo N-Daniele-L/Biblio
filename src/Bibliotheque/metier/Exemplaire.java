@@ -1,5 +1,7 @@
 package Bibliotheque.metier;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -90,37 +92,71 @@ public class Exemplaire {
     }
 
     public void modifierEtat(String etat){
-        //TODO modifier etat exemplaire
+        descriptionEtat = etat;
     }
 
     public Lecteur lecteurActuel(){
-        //TODO lecteur actuel exemplaire
-        return null;
+        int max = getLloc().size();
+        Lecteur DernLect = getLloc().get(max - 1).getLoueur();
+        LocalDate date = getLloc().get(max - 1).getDateRestitution();
+        if(date == null){
+            return DernLect;
+        }
+        else{
+            return null; //pas de lecteur actuel
+        }
     }
     public List<Lecteur> lecteurs(){
-        //lecteurs exemplaire
-        return null;
+        List<Lecteur> llecteur = new ArrayList<>();
+        for (Location lect: getLloc()) {
+            llecteur.add(lect.getLoueur()); //possible doublon de lecteurs
+        }
+        return llecteur;
     }
 
     public void envoiMailLecteurActuel(Mail mail){
-        //TODO envoi mail lecteur exemplaire
-        //println (contenu du mail)
+        Lecteur DernLect = lecteurActuel();
+        if (DernLect == null){
+            System.out.println("pas de lecteur actuel");
+        }
+        else{
+            String mailLect = DernLect.getMail();
+            System.out.println("Destinataire : " + mailLect);
+            System.out.println("Contenu : " + mail);
+        }
     }
     public void envoiMailLecteurs(Mail mail){
-        //TODO envoi mail lecteurs exemplaireµ
-        //println (contenu du mail)
+        // envoi de mail un par un ???
+        for (Lecteur l: lecteurs()) {
+            String mailLect = l.getMail();
+            System.out.println("Destinataire : " + mailLect);
+            System.out.println("Contenu : " + mail);
+        }
     }
 
     public boolean enRetard(){
-        //TODO enretard exeplaire
-        return false;
+        LocalDate Ajd = LocalDate.now();
+        int max = getLloc().size();
+        Location DernLoc = lloc.get(max - 1);
+
+        if(DernLoc.getDateRestitution().isBefore(Ajd)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
-    public int joursRetard(){
-        //TODO jours retard exemplaire
-        return 0;
+    public int joursRetard() {
+        if (enRetard()) {
+            LocalDate Ajd = LocalDate.now();
+            int max = getLloc().size();
+            Location DernLoc = lloc.get(max - 1);
+            return (int) DernLoc.getDateRestitution().until(Ajd, ChronoUnit.DAYS);
+        } else {
+            return 0;
+        }
     }
-
 
     public boolean enLocation(){
         //TODO en location exemplaires
