@@ -1,18 +1,19 @@
 package Bibliotheque.metier;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalTime;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class DVD extends Ouvrage{
 
     private long code;
-    private String dureeTotale;
+    private LocalTime dureeTotale;
     private byte nbreBonus;
-    private List<String> autresLangues=new ArrayList<>();
-    private List<String> sousTitres=new ArrayList<>();
-    public DVD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre,long code,String dureeTotale,byte nbreBonus) {
+    private Set<String> autresLangues=new HashSet<>();
+    private Set<String> sousTitres=new HashSet<>();
+    public DVD(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre, long code, LocalTime dureeTotale, byte nbreBonus) {
         super(titre, ageMin, dateParution, TypeOuvrage.DVD, prixLocation, langue, genre);
         this.code=code;
        this.dureeTotale=dureeTotale;
@@ -27,11 +28,11 @@ public class DVD extends Ouvrage{
         this.code = code;
     }
 
-    public String getDureeTotale() {
+    public LocalTime getDureeTotale() {
         return dureeTotale;
     }
 
-    public void setDureeTotale(String dureeTotale) {
+    public void setDureeTotale(LocalTime dureeTotale) {
         this.dureeTotale = dureeTotale;
     }
 
@@ -43,26 +44,22 @@ public class DVD extends Ouvrage{
         this.nbreBonus = nbreBonus;
     }
 
-    public List<String> getAutresLangues() {
+    public Set<String> getAutresLangues() {
         return autresLangues;
     }
 
-    public void setAutresLangues(List<String> autresLangues) {
+    public void setAutresLangues(Set<String> autresLangues) {
         this.autresLangues = autresLangues;
     }
 
-    public List<String> getSousTitres() {
+    public Set<String> getSousTitres() {
         return sousTitres;
     }
 
-    public void setSousTitres(List<String> sousTitres) {
+    public void setSousTitres(Set<String> sousTitres) {
         this.sousTitres = sousTitres;
     }
 
-    @Override
-    public double amendeRetard(int njours) {
-        return njours*4;
-    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,6 +72,16 @@ public class DVD extends Ouvrage{
     public int hashCode() {
         return Objects.hash(code);
     }
+    @Override
+    public double amendeRetard(int njours) {
+
+        return njours * 1.50;
+    }
+
+    @Override
+    public int njlocmax() {
+        return 3;
+    }
 
     @Override
     public String toString() {
@@ -84,6 +91,6 @@ public class DVD extends Ouvrage{
                 ", nbreBonus=" + nbreBonus +
                 ", autresLangues=" + autresLangues +
                 ", sousTitres=" + sousTitres +
-                "} " + super.toString();
+                "} " ;
     }
 }

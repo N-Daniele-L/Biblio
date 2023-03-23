@@ -57,10 +57,23 @@ public class Livre extends Ouvrage{
         Livre livre = (Livre) o;
         return Objects.equals(isbn, livre.isbn);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(isbn);
     }
+
+    @Override
+    public double amendeRetard(int njours) {
+
+        return njours*0.25;
+    }
+
+    @Override
+    public int njlocmax() {
+        return 15;
+    }
+
     @Override
     public String toString() {
         return super.toString()+ "Livre{" +
@@ -68,10 +81,6 @@ public class Livre extends Ouvrage{
                 ", nbrePages=" + nbrePages +
                 ", tl=" + tl +
                 ", resume='" + resume + '\'' +
-                "} " + super.toString();
-    }
-    @Override
-    public double amendeRetard(int njours) {
-        return njours*5;
+                "} " ;
     }
 }
