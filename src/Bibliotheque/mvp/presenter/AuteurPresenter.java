@@ -1,7 +1,6 @@
 package Bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Auteur;
-import Bibliotheque.metier.Ouvrage;
+import Bibliotheque.metier.*;
 import Bibliotheque.mvp.model.DAOAuteur;
 import Bibliotheque.mvp.model.SpecialAuteur;
 import Bibliotheque.mvp.view.AuteurViewInterface;
@@ -60,21 +59,21 @@ public class AuteurPresenter {
         else view.affList(ouvr);
     }
 
-    public void listeAllOuvrageByType(Auteur a) {
-        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByType(a);
+    public void listeAllOuvrageByType(Auteur a, TypeOuvrage to) {
+        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByType(a, to);
         if(ouvr==null || ouvr.isEmpty()) view.affMsg("aucun ouvrage trouvé");
         else view.affList(ouvr);
     }
 
-    public void listeAllOuvrageByLivre(Auteur a) {
-        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByLivre(a);
-        if(ouvr==null || ouvr.isEmpty()) view.affMsg("aucun ouvrage trouvé");
-        else view.affList(ouvr);
+    public void listeAllOuvrageByLivre(Auteur a, TypeLivre tl) {
+        List<Livre> livr = ((SpecialAuteur)model).listeAllOuvrageByLivre(a, tl);
+        if(livr==null || livr.isEmpty()) view.affMsg("aucun livre trouvé");
+        else view.afficheList(livr);
 
     }
 
-    public void listeAllOuvrageByGenre(Auteur a) {
-        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByGenre(a);
+    public void listeAllOuvrageByGenre(Auteur a, String genre) {
+        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByGenre(a,genre);
         if(ouvr==null || ouvr.isEmpty()) view.affMsg("aucun ouvrage trouvé");
         else view.affList(ouvr);
     }

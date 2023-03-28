@@ -2,6 +2,7 @@ package Bibliotheque.mvp.view;
 
 import Bibliotheque.metier.Auteur;
 
+import Bibliotheque.metier.Livre;
 import Bibliotheque.metier.Ouvrage;
 import Bibliotheque.mvp.presenter.AuteurPresenter;
 
@@ -14,4 +15,6 @@ public interface AuteurViewInterface {
 
     public void affMsg(String msg);
     void affList(List<Ouvrage> ouvr);
+
+    void afficheList(List<Livre> livr);
 }

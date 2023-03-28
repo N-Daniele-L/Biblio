@@ -1,8 +1,6 @@
 package Bibliotheque.mvp.model;
 
-import Bibliotheque.metier.Auteur;
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.metier.Ouvrage;
+import Bibliotheque.metier.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,17 +62,16 @@ public class AuteurModel implements DAOAuteur, SpecialAuteur{
     }
 
     @Override
-    public List<Ouvrage> listeAllOuvrageByType(Auteur a) {
-        return a.listerOuvrages();
+    public List<Ouvrage> listeAllOuvrageByType(Auteur a, TypeOuvrage to) {
+        return a.listerOuvrages(to);
+    }
+
+    public List<Livre> listeAllOuvrageByLivre(Auteur a, TypeLivre tl) {
+        return a.listerLivres(tl);
     }
 
     @Override
-    public List<Ouvrage> listeAllOuvrageByLivre(Auteur a) {
-        return a.listerLivres();
-    }
-
-    @Override
-    public List<Ouvrage> listeAllOuvrageByGenre(Auteur a) {
-        return a.listerOuvrages();
+    public List<Ouvrage> listeAllOuvrageByGenre(Auteur a, String genre) {
+        return a.listerOuvrages(genre);
     }
 }

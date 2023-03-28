@@ -1,6 +1,7 @@
 package Bibliotheque.mvp.view;
 
 import Bibliotheque.metier.Auteur;
+import Bibliotheque.metier.Livre;
 import Bibliotheque.metier.Ouvrage;
 import Bibliotheque.mvp.presenter.AuteurPresenter;
 
@@ -40,6 +41,10 @@ public class AuteurViewConsole implements AuteurViewInterface{
     @Override
     public void affList(List<Ouvrage> ouvr) {
         affListe(ouvr);
+    }
+    @Override
+    public void afficheList(List<Livre> livr) {
+        affListe(livr);
     }
 
     private void menu() {
