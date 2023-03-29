@@ -25,27 +25,24 @@ public class AuteurPresenter {
         return model.getAuteurs();
     }
 
-    public void addLecteur(Auteur auteur) {
+    public void addAuteur(Auteur auteur) {
         Auteur aut = model.addAuteur(auteur);
         if(aut!=null) view.affMsg("création de :"+aut);
         else view.affMsg("erreur de création");
-        //List<Auteur> a = model.getAuteurs();
-        // view.setListDatas(lecteurs); //désactivé pour éviter appels imbriqués
+        List<Auteur> a = model.getAuteurs();
     }
 
 
-    public void removeLecteur(Auteur auteur) {
+    public void removeAuteur(Auteur auteur) {
         boolean ok = model.removeAuteur(auteur);
         if(ok) view.affMsg("lecteur effacé");
         else view.affMsg("lecteur non effacé");
-        //List<Auteur> a = model.getAuteurs();
-        //view.setListDatas(lecteurs); //désactivé pour éviter appels imbriqués
+        List<Auteur> a = model.getAuteurs();
     }
     public void update(Auteur auteur) {
-        Auteur l  =model.updateAuteur(auteur);
-        if(l==null) view.affMsg("mise à jour infrucueuse");
-        else view.affMsg("mise à jour effectuée : "+l);
-        //view.setListDatas(model.getClients());//désactivé pour éviter appels imbriqués
+        Auteur a  =model.updateAuteur(auteur);
+        if(a==null) view.affMsg("mise à jour infrucueuse");
+        else view.affMsg("mise à jour effectuée : "+a);
     }
 
     public void search(String nom, String prenom, String natio) {

@@ -1,14 +1,15 @@
 package Bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Auteur;
-import Bibliotheque.metier.Livre;
-import Bibliotheque.metier.Ouvrage;
+import Bibliotheque.metier.*;
 import Bibliotheque.mvp.presenter.AuteurPresenter;
+import Bibliotheque.utilitaires.Utilitaire;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static Bibliotheque.utilitaires.Utilitaire.affListe;
+import static Bibliotheque.utilitaires.Utilitaire.*;
 
 public class AuteurViewConsole implements AuteurViewInterface{
 
@@ -16,7 +17,7 @@ public class AuteurViewConsole implements AuteurViewInterface{
     private List<Auteur> laut;
     private Scanner sc = new Scanner(System.in);
 
-    AuteurViewConsole(){
+    public AuteurViewConsole(){
 
     }
     @Override
@@ -48,5 +49,98 @@ public class AuteurViewConsole implements AuteurViewInterface{
     }
 
     private void menu() {
+        List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "rechercher","modifier","special","fin"));
+        do {
+            int ch = choixListe(options);
+
+            switch (ch) {
+                case 1:
+                    ajouter();
+                    break;
+                case 2:
+                    retirer();
+                    break;
+                case 3:
+                    rechercher();
+                    break;
+                case 4:
+                    modifier();
+                    break;
+                case 5:
+                    special();
+                    break;
+                case 6:
+                    return;
+            }
+        } while (true);
+    }
+
+    private void ajouter() {
+        System.out.println("nom : ");
+        String nom = sc.nextLine();
+        System.out.println("prenom : ");
+        String prenom = sc.nextLine();
+        System.out.println("nationalité : ");
+        String natio = sc.nextLine();
+        Auteur aut = new Auteur(nom, prenom, natio);
+        presenter.addAuteur(aut);
+    }
+
+    private void retirer() {
+        int choix = choixElt(laut);
+        Auteur auteur = laut.get(choix-1);
+        presenter.removeAuteur(auteur);
+        laut=presenter.getAll();//rafraichissement
+        Utilitaire.affListe(laut);
+    }
+
+    private void rechercher() {
+        System.out.println("nom : ");
+        String nom = sc.nextLine();
+        System.out.println("prenom : ");
+        String prenom = sc.nextLine();
+        System.out.println("nationalité : ");
+        String natio = sc.nextLine();
+        presenter.search(nom,prenom,natio);
+    }
+
+    private void modifier() {
+        int choix = choixElt(laut);
+        Auteur auteur = laut.get(choix-1);
+        String nom = modifyIfNotBlank("nom",auteur.getNom());
+        String prenom = modifyIfNotBlank("prenom",auteur.getPrenom());
+        String natio = modifyIfNotBlank("nationalité", auteur.getNationalite());
+        Auteur aut = new Auteur(nom,prenom,natio);
+        presenter.update(aut);
+        laut=presenter.getAll();//rafraichissement
+        Utilitaire.affListe(laut);
+    }
+
+    private void special() {
+        int choix = choixElt(laut);
+        Auteur auteur = laut.get(choix-1);
+        do {
+            System.out.println("1.Lister tout les ouvrages\n2.Lister les ouvrages par type\n3.Lister les ouvrages par livre\n4.Lister les ouvrages par genre\n5.menu principal");
+            System.out.println("choix : ");
+            int ch = sc.nextInt();
+            sc.skip("\n");
+            switch (ch) {
+                case 1:
+                    presenter.listeAllOuvrage(auteur);
+                    break;
+                case 2:
+                    presenter.listeAllOuvrageByType(auteur, TypeOuvrage.DVD);
+                    break;
+                case 3:
+                    presenter.listeAllOuvrageByLivre(auteur,TypeLivre.BIOGRAPHIE);
+                    break;
+                case 4:
+                    presenter.listeAllOuvrageByGenre(auteur,"");
+                    break;
+                case 5: return;
+                default:
+                    System.out.println("choix invalide recommencez ");
+            }
+        } while (true);
     }
 }

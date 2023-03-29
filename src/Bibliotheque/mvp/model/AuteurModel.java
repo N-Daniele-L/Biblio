@@ -2,6 +2,7 @@ package Bibliotheque.mvp.model;
 
 import Bibliotheque.metier.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +53,10 @@ public class AuteurModel implements DAOAuteur, SpecialAuteur{
     }
 
     private void populate(){
-
+        Auteur aut = new Auteur("Nicolo","Daniele","Italienne");
+        addAuteur(aut);
+        aut = new Auteur("Byrne","Emma","Américiane");
+        addAuteur(aut);
     }
 
 
