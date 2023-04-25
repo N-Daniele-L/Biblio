@@ -19,7 +19,7 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
     private OuvragePresenter presenter;
     private List<Ouvrage> louvr;
     private Scanner sc = new Scanner(System.in);
-    OuvrageViewConsole(){
+    public OuvrageViewConsole(){
 
     }
     @Override
@@ -46,6 +46,7 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
     private void menu() {
         List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "rechercher","modifier","special","fin"));
         do {
+            try{
             int ch = choixListe(options);
 
             switch (ch) {
@@ -67,10 +68,17 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
                 case 6:
                     return;
             }
+            }catch (Exception e){
+                System.err.println("Erreur : " + e.getMessage());
+                System.out.println("Retour au menu principal");
+                break;
+            }
         } while (true);
     }
 
     private void ajouter() {
+        int i = 1;
+        int k = 1;
         TypeOuvrage[] tto = TypeOuvrage.values();
         List<TypeOuvrage> lto = new ArrayList<>(Arrays.asList(tto));
         TypeLivre[] ttl = TypeLivre.values();
@@ -80,7 +88,7 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
         String titre = sc.nextLine();
         System.out.println("age minimum : ");
         int ageMin = sc.nextInt();
-        sc.skip("");
+        sc.skip("\n");
         System.out.println("date de parution : ");
         String[] jma = sc.nextLine().split(" ");
         int j = Integer.parseInt(jma[0]);
@@ -89,13 +97,14 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
         LocalDate dp = LocalDate.of(a, m, j);
         System.out.println("choix du type d'ouvrage : ");
         for (TypeOuvrage to: lto) {
-            System.out.println("1) " + to);
+            System.out.println(i +") " + to);
+            i++;
         }
         int ito = sc.nextInt();
         TypeOuvrage to = lto.get(ito - 1);
         System.out.println("Prix location : ");
         double prix = sc.nextDouble();
-        sc.skip("");
+        sc.skip("\n");
         System.out.println("langue : ");
         String langue = sc.nextLine();
         System.out.println("genre : ");
@@ -107,37 +116,39 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
                 int nbrpg = sc.nextInt();
                 System.out.println("choix du type de livre : ");
                 for (TypeLivre tl: ltl) {
-                    System.out.println("1) " + tl);
+                    System.out.println(k + ") " + tl);
+                    k++;
                 }
                 int itl = sc.nextInt();
-                sc.skip("");
+                sc.skip("\n");
                 System.out.println("isbn : ");
                 String isbn = sc.nextLine();
                 System.out.println("resumé : ");
                 String resume = sc.nextLine();
 
                 Ouvrage livr = new Livre(titre,ageMin,dp,prix,langue,genre,isbn,nbrpg,ltl.get(itl -1),resume);
+                presenter.addOuvrage(livr);
                 break;
             case 1 :
                 System.out.println("code : ");
                 long code = sc.nextLong();
                 System.out.println("nombre de plages : ");
                 byte nbrpl = sc.nextByte();
-                System.out.println("durée totale : ");
-                DateTimeFormatter parseFormat = DateTimeFormatter.ofPattern("H:mm:ss");
-                String timeString = sc.nextLine();
-                LocalTime time = LocalTime.parse(timeString, parseFormat);
+                System.out.println("durée en H M S : ");
+                LocalTime time = Utilitaire.lecTime();
                 Ouvrage cd = new CD(titre,ageMin,dp,prix,langue,genre,code,nbrpl,time);
+                presenter.addOuvrage(cd);
+                break;
             case 2 :
                 System.out.println("code : ");
                 long code2 = sc.nextLong();
                 System.out.println("nombre bonus : ");
                 byte nbrbns = sc.nextByte();
-                System.out.println("durée totale : ");
-                DateTimeFormatter parseFormat2 = DateTimeFormatter.ofPattern("H:mm:ss");
-                String timeString2 = sc.nextLine();
-                LocalTime time2 = LocalTime.parse(timeString2, parseFormat2);
+                System.out.println("durée en H M S : ");
+                LocalTime time2 = Utilitaire.lecTime();
                 Ouvrage dvd = new DVD(titre,ageMin,dp,prix,langue,genre,code2,time2,nbrbns);
+                presenter.addOuvrage(dvd);
+                break;
         }
     }
 
@@ -184,11 +195,10 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
         String genre = modifyIfNotBlank("genre",o.getGenre());
 
         switch (ito - 1) {
-            //TODO cast les ouvrages en livre,cd,dvd aucune idée de comment faire
             case 0:
                 int nbrpg = sc.nextInt();
                 for (TypeLivre tl : ltl) {
-                    System.out.println("1) " + tl);
+                    System.out.println(j +") " + tl);
                 }
                 int itl = sc.nextInt();
 
@@ -196,6 +206,7 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
                 String resume = sc.nextLine();
 
                 Ouvrage livr = new Livre(titre, ageMin, dp, prix, langue, genre, isbn, nbrpg, ltl.get(itl - 1), resume);
+                presenter.addOuvrage(livr);
                 break;
             case 1:
                 System.out.println("code : ");
@@ -207,6 +218,7 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
                 String timeString = sc.nextLine();
                 LocalTime time = LocalTime.parse(timeString, parseFormat);
                 Ouvrage cd = new CD(titre, ageMin, dp, prix, langue, genre, code, nbrpl, time);
+                presenter.addOuvrage(cd);
             case 2:
                 System.out.println("code : ");
                 long code2 = sc.nextLong();
@@ -217,6 +229,7 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
                 String timeString2 = sc.nextLine();
                 LocalTime time2 = LocalTime.parse(timeString2, parseFormat2);
                 Ouvrage dvd = new DVD(titre, ageMin, dp, prix, langue, genre, code2, time2, nbrbns);
+                presenter.addOuvrage(dvd);
         }
     }
 
@@ -225,6 +238,7 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
         Ouvrage o = louvr.get(choix-1);
 
         do {
+            try{
             List<String> options = new ArrayList<>(Arrays.asList("Lister exemplaires", "Lister exemplaires en location", "fin"));
 
             int ch = Utilitaire.choixListe(options);
@@ -240,6 +254,11 @@ public class OuvrageViewConsole implements OuvrageViewInterface{
                     return;
                 default:
                     System.out.println("choix invalide recommencez ");
+            }
+            }catch (Exception e){
+                System.err.println("Erreur : " + e.getMessage());
+                System.out.println("Retour au menu des ouvrages");
+                break;
             }
         } while (true);
 

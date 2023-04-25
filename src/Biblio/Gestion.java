@@ -26,7 +26,7 @@ public class Gestion {
         a = new Auteur("Spielberg","Steven","USA");
         laut.add(a);
 
-        Ouvrage d = new DVD("AI",12,LocalDate.of(2000,10,1),2.50,"anglais","SF",4578l,"120 min",(byte)2);
+        Ouvrage d = new DVD("AI",12,LocalDate.of(2000,10,1),TypeOuvrage.DVD,2.50,"anglais","SF",4578l,"120 min",(byte)2);
         ((DVD) d).getAutresLangues().add("français");
         ((DVD) d).getAutresLangues().add("italien");
         ((DVD) d).getSousTitres().add("néerlandais");
@@ -39,7 +39,7 @@ public class Gestion {
 
         a.addLouvrage(d);
 
-        Ouvrage c = new CD("The Compil 2023",0,LocalDate.of(2023,1,1),2,"English","POP",1245,(byte)20,"100 min");
+        Ouvrage c = new CD("The Compil 2023",0,LocalDate.of(2023,1,1),TypeOuvrage.CD,2,"English","POP",1245,(byte)20,"100 min");
         louv.add(c);
 
         Rayon r = new Rayon("r12","aventure");

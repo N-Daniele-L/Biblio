@@ -14,7 +14,7 @@ public class OuvragePresenter {
     private DAOOuvrage model;
     private OuvrageViewInterface view;
 
-    OuvragePresenter(DAOOuvrage model, OuvrageViewInterface view){
+    public OuvragePresenter(DAOOuvrage model, OuvrageViewInterface view){
         this.model = model;
         this.view = view;
         this.view.setPresenter(this);

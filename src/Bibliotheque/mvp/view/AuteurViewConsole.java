@@ -51,26 +51,32 @@ public class AuteurViewConsole implements AuteurViewInterface{
     private void menu() {
         List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "rechercher","modifier","special","fin"));
         do {
-            int ch = choixListe(options);
+            try {
+                int ch2 = choixListe(options);
 
-            switch (ch) {
-                case 1:
-                    ajouter();
-                    break;
-                case 2:
-                    retirer();
-                    break;
-                case 3:
-                    rechercher();
-                    break;
-                case 4:
-                    modifier();
-                    break;
-                case 5:
-                    special();
-                    break;
-                case 6:
-                    return;
+                switch (ch2) {
+                    case 1:
+                        ajouter();
+                        break;
+                    case 2:
+                        retirer();
+                        break;
+                    case 3:
+                        rechercher();
+                        break;
+                    case 4:
+                        modifier();
+                        break;
+                    case 5:
+                        special();
+                        break;
+                    case 6:
+                        return;
+                }
+            }catch (Exception e){
+                System.err.println("Erreur : " + e.getMessage());
+                System.out.println("Retour au menu principal");
+                break;
             }
         } while (true);
     }

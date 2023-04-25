@@ -1,7 +1,9 @@
 package Bibliotheque.mvp.model;
 
 import Bibliotheque.metier.Exemplaire;
+import Bibliotheque.metier.Livre;
 import Bibliotheque.metier.Ouvrage;
+import Bibliotheque.metier.TypeLivre;
 import Bibliotheque.mvp.model.DAOLecteur;
 import Bibliotheque.mvp.model.SpecialLecteur;
 
@@ -15,7 +17,11 @@ public class OuvrageModel implements DAOOuvrage, SpecialOuvrage {
     private List<Ouvrage> louvrages = new ArrayList<>();
 
     public OuvrageModel() {
-        //populate();
+        populate();
+    }
+
+    private void populate() {
+        Ouvrage o = new Livre("Bonjour",8,LocalDate.of(2023,1,1),12,"Français","Tous","A1234",12, TypeLivre.BIOGRAPHIE,"Bonjours à tous");
     }
 
     @Override
