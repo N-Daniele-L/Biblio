@@ -13,7 +13,6 @@ import java.util.List;
 
 
 public class OuvrageModel implements DAOOuvrage, SpecialOuvrage {
-    private int numcli = 0;
     private List<Ouvrage> louvrages = new ArrayList<>();
 
     public OuvrageModel() {
