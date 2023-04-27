@@ -1,53 +1,18 @@
 package Bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.*;
-import Bibliotheque.mvp.model.DAOOuvrage;
-import Bibliotheque.mvp.model.SpecialAuteur;
+import Bibliotheque.metier.Exemplaire;
+import Bibliotheque.metier.Ouvrage;
+import Bibliotheque.mvp.model.DAOGenerique;
 import Bibliotheque.mvp.model.SpecialOuvrage;
-import Bibliotheque.mvp.view.OuvrageViewConsole;
-import Bibliotheque.mvp.view.OuvrageViewInterface;
+import Bibliotheque.mvp.view.ViewInterface;
 
 import java.util.List;
 
-public class OuvragePresenter {
+public class OuvragePresenter extends Presenter<Ouvrage> {
 
-    private DAOOuvrage model;
-    private OuvrageViewInterface view;
 
-    public OuvragePresenter(DAOOuvrage model, OuvrageViewInterface view){
-        this.model = model;
-        this.view = view;
-        this.view.setPresenter(this);
-    }
-
-    public void start() {
-        view.setListDatas(getAll());
-    }
-    public List<Ouvrage> getAll(){
-        return model.getOuvrages();
-    }
-    public void addOuvrage(Ouvrage ouvrage) {
-        Ouvrage ouvr = model.addOuvrage(ouvrage);
-        if(ouvr!=null) view.affMsg("création de :"+ouvr);
-        else view.affMsg("erreur de création");
-        List<Ouvrage> ouvrages = model.getOuvrages();
-    }
-    public void removeOuvrage(Ouvrage ouvrage) {
-        boolean ok = model.removeOuvrage(ouvrage);
-        if(ok) view.affMsg("lecteur effacé");
-        else view.affMsg("lecteur non effacé");
-        List<Ouvrage> ouvrages = model.getOuvrages();
-    }
-    public void update(Ouvrage ouvrage) {
-        Ouvrage o  =model.updateOuvrage(ouvrage);
-        if(o==null) view.affMsg("mise à jour infrucueuse");
-        else view.affMsg("mise à jour effectuée : "+o);
-    }
-
-    public void search(String titre) {
-        Ouvrage o = model.readOuvrage(titre);
-        if(o==null) view.affMsg("recherche infructueuse");
-        else view.affMsg(o.toString());
+    public OuvragePresenter(DAOGenerique<Ouvrage> model, ViewInterface<Ouvrage> view) {
+        super(model,view);
     }
     public void listerExemplaires(Ouvrage ouvrage) {
         List<Exemplaire> ex = ((SpecialOuvrage)model).listerExemplaires(ouvrage);

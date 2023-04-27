@@ -1,190 +1,108 @@
 package Bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Exemplaire;
+
 import Bibliotheque.metier.Lecteur;
 import Bibliotheque.mvp.presenter.LecteurPresenter;
-import Bibliotheque.utilitaires.Utilitaire;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 import static Bibliotheque.utilitaires.Utilitaire.*;
 
-public class LecteurViewConsole implements LecteurViewInterface {
-    private LecteurPresenter presenter;
-    private List<Lecteur> llec;
-    private Scanner sc = new Scanner(System.in);
 
-    public LecteurViewConsole() {
+public class LecteurViewConsole extends AbstractViewConsole<Lecteur> {
 
-    }
 
-    @Override
-    public void setPresenter(LecteurPresenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @Override
-    public void setListDatas(List<Lecteur> lecteurs) {
-        this.llec = lecteurs;
-        affListe(llec);
-        menu();
-    }
-
-    @Override
-    public void affMsg(String msg) {
-        System.out.println("information:" + msg);
-    }
-
-    @Override
-    public void affList(List<Exemplaire> lex) {
-        affListe(lex);
-    }
-
-    public void menu() {
-        List options = new ArrayList<>(Arrays.asList("ajouter", "retirer", "rechercher","modifier","special","fin"));
-        do {
-            try{
-            int ch = choixListe(options);
-
-            switch (ch) {
-                case 1:
-                    ajouter();
-                    break;
-                case 2:
-                    retirer();
-                    break;
-                case 3:
-                    rechercher();
-                    break;
-                case 4:
-                    modifier();
-                    break;
-                case 5:
-                    special();
-                    break;
-                case 6:
-                    return;
-            }
-            }catch (Exception e){
-                System.err.println("Erreur : " + e.getMessage());
-                System.out.println("Retour au menu principal");
-                break;
-            }
-        } while (true);
-    }
-
-    private void rechercher() {
-        try{
+  protected  void rechercher() {
         System.out.println("numLecteur : ");
         int idLecteur = sc.nextInt();
-        presenter.search(idLecteur);
-        }catch (Exception e){
-            System.err.println("Erreur : " + e.getMessage());
-            System.out.println("Retour au menu des lecteurs");
-        }
+      Lecteur rech = null;
+      try {
+          rech = new Lecteur(idLecteur,"zzz","zzz",null,null,null,null);
+      } catch (Exception e) {
+          throw new RuntimeException(e);
+      }
+      presenter.search(rech);
     }
 
-    private void modifier() {
-        try{
-        int choix = choixElt(llec);
-        Lecteur l = llec.get(choix-1);
+   protected  void modifier() {
+        int choix = choixElt(ldatas);
+        Lecteur l = ldatas.get(choix-1);
         String nom = modifyIfNotBlank("nom",l.getNom());
-        String prenom = modifyIfNotBlank("nom",l.getNom());
+        String prenom = modifyIfNotBlank("prénom",l.getPrenom());
         String date = modifyIfNotBlank("date de naissance",getDateFrench(l.getDn()));
-            String[] jma = date.split(" ");
-            int j = Integer.parseInt(jma[0]);
-            int m = Integer.parseInt(jma[1]);
-            int a = Integer.parseInt(jma[2]);
-            LocalDate dn = LocalDate.of(a, m, j);
+        String[] jma = date.split(" ");
+        int j = Integer.parseInt(jma[0]);
+        int m = Integer.parseInt(jma[1]);
+        int a = Integer.parseInt(jma[2]);
+        LocalDate dn = LocalDate.of(a, m, j);
         String adr = modifyIfNotBlank("adresse",l.getAdresse());
         String mail= modifyIfNotBlank("mail",l.getMail());
         String tel =modifyIfNotBlank("tel",l.getTel());
-        Lecteur lec = new Lecteur(l.getNumlecteur(), nom, prenom, dn, adr, mail, tel);
-        presenter.update(lec);
-        llec=presenter.getAll();//rafraichissement
-        Utilitaire.affListe(llec);
-        }catch (NumberFormatException e){
-            System.err.println("Erreur date suivre ce model : \"xx xx xx\"");
-            System.out.println("Retour au au menu des ouvrages");
-        }
-        catch (Exception e){
-            System.err.println("Erreur : " + e.getMessage());
-            System.out.println("Retour au au menu des lecteurs");
-        }
+       Lecteur lec = null;
+       try {
+           lec = new Lecteur(l.getNumlecteur(), nom, prenom, dn, adr, mail, tel);
+       } catch (Exception e) {
+           System.out.println("erreur :"+e);
+       }
+       presenter.update(lec);
+        ldatas=presenter.getAll();//rafraichissement
+        affListe(ldatas);
     }
 
-    private void retirer() {
-        try{
-        int choix = choixElt(llec);
-        Lecteur lecteur = llec.get(choix-1);
-        presenter.removeLecteur(lecteur);
-        llec=presenter.getAll();//rafraichissement
-        Utilitaire.affListe(llec);
-        }catch (Exception e){
-            System.err.println("Erreur : " + e.getMessage());
-            System.out.println("Retour au au menu des lecteurs");
-        }
+    protected  void retirer() {
+        int choix = choixElt(ldatas);
+        Lecteur lecteur = ldatas.get(choix-1);
+        presenter.remove(lecteur);
+        ldatas=presenter.getAll();//rafraichissement
+        affListe(ldatas);
     }
 
 
-    private void ajouter() {
+    protected  void ajouter() {
+        System.out.println("nom ");
+        String nom = sc.nextLine();
+        System.out.println("prénom ");
+        String prenom = sc.nextLine();
+        System.out.println("date de naissance");
+        String[] jma = sc.nextLine().split(" ");
+        int j = Integer.parseInt(jma[0]);
+        int m = Integer.parseInt(jma[1]);
+        int a = Integer.parseInt(jma[2]);
+        LocalDate dn = LocalDate.of(a, m, j);
+        System.out.println("adresse");
+        String adr = sc.nextLine();
+        System.out.println("mail");
+        String mail = sc.nextLine();
+        System.out.println("tel ");
+        String tel = sc.nextLine();
+        Lecteur lec = null;
         try {
-            System.out.println("nom ");
-            String nom = sc.nextLine();
-            System.out.println("prénom ");
-            String prenom = sc.nextLine();
-            System.out.println("date de naissance");
-            String[] jma = sc.nextLine().split(" ");
-            int j = Integer.parseInt(jma[0]);
-            int m = Integer.parseInt(jma[1]);
-            int a = Integer.parseInt(jma[2]);
-            LocalDate dn = LocalDate.of(a, m, j);
-            System.out.println("adresse");
-            String adr = sc.nextLine();
-            System.out.println("mail");
-            String mail = sc.nextLine();
-            System.out.println("tel ");
-            String tel = sc.nextLine();
-            Lecteur lec = new Lecteur(0, nom, prenom, dn, adr, mail, tel);
-            presenter.addLecteur(lec);
-            llec = presenter.getAll();//rafraichissement
-            Utilitaire.affListe(llec);
-        } catch (NumberFormatException e){
-            System.err.println("Erreur date suivre ce model : \"xx xx xx\"");
-            System.out.println("Retour au au menu des ouvrages");
+            lec = new Lecteur(0, nom, prenom, dn, adr, mail, tel);
+        } catch (Exception e) {
+            System.out.println("erreur : "+e);
         }
-        catch (Exception e) {
-            System.err.println("Erreur : " + e.getMessage());
-            System.out.println("Retour au au menu des lecteurs");
-        }
+        presenter.add(lec);
+        ldatas=presenter.getAll();//rafraichissement
+        affListe(ldatas);
     }
-    private void special() {
-        int choix =  choixElt(llec);
-        Lecteur lec = llec.get(choix-1);
+    protected  void special() {
+        int choix =  choixElt(ldatas);
+        Lecteur lec = ldatas.get(choix-1);
             do {
-                try{
                 System.out.println("1.Exemplaire en location\n2.Exemplaires loués\n3.menu principal");
                 System.out.println("choix : ");
-                int ch = sc.nextInt();
+                int ch = lireInt();
                 sc.skip("\n");
                 switch (ch) {
                     case 1:
-                        presenter.exemplairesEnLocation(lec);
+                        ((LecteurPresenter)presenter).exemplairesEnLocation(lec);
                         break;
                     case 2:
-                        presenter.exemplairesLoues(lec);
+                        ((LecteurPresenter)presenter).exemplairesLoues(lec);
                         break;
                     case 3: return;
                     default:
                         System.out.println("choix invalide recommencez ");
-                }
-                }catch (Exception e) {
-                    System.err.println("Erreur : " + e.getMessage());
-                    System.out.println("Retour au au menu des lecteurs");
                 }
             } while (true);
 

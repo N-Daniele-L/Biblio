@@ -4,7 +4,7 @@ import Bibliotheque.metier.Auteur;
 
 import java.util.List;
 
-public interface DAOAuteur {
+public interface DAOAuteur{
         Auteur addAuteur(Auteur aut);
 
         boolean removeAuteur(Auteur aut);

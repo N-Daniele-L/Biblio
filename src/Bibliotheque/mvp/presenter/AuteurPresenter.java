@@ -1,54 +1,19 @@
 package Bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.*;
-import Bibliotheque.mvp.model.DAOAuteur;
+import Bibliotheque.metier.Auteur;
+import Bibliotheque.metier.Ouvrage;
+import Bibliotheque.metier.TypeOuvrage;
+import Bibliotheque.mvp.model.DAOGenerique;
 import Bibliotheque.mvp.model.SpecialAuteur;
-import Bibliotheque.mvp.view.AuteurViewInterface;
+import Bibliotheque.mvp.view.ViewInterface;
 
 import java.util.List;
 
-public class AuteurPresenter {
-    private DAOAuteur model;
-    private AuteurViewInterface view;
-
-    public AuteurPresenter(DAOAuteur model, AuteurViewInterface view) {
-        this.model = model;
-        this.view = view;
-        this.view.setPresenter(this);
-    }
-
-    public void start() {
-        view.setListDatas(getAll());
-    }
-
-    public List<Auteur> getAll(){
-        return model.getAuteurs();
-    }
-
-    public void addAuteur(Auteur auteur) {
-        Auteur aut = model.addAuteur(auteur);
-        if(aut!=null) view.affMsg("création de :"+aut);
-        else view.affMsg("erreur de création");
-        List<Auteur> a = model.getAuteurs();
-    }
+public class AuteurPresenter extends Presenter<Auteur> {
 
 
-    public void removeAuteur(Auteur auteur) {
-        boolean ok = model.removeAuteur(auteur);
-        if(ok) view.affMsg("lecteur effacé");
-        else view.affMsg("lecteur non effacé");
-        List<Auteur> a = model.getAuteurs();
-    }
-    public void update(Auteur auteur) {
-        Auteur a  =model.updateAuteur(auteur);
-        if(a==null) view.affMsg("mise à jour infrucueuse");
-        else view.affMsg("mise à jour effectuée : "+a);
-    }
-
-    public void search(String nom, String prenom, String natio) {
-        Auteur a = model.readAuteur(nom,prenom,natio);
-        if(a==null) view.affMsg("recherche infructueuse");
-        else view.affMsg(a.toString());
+    public AuteurPresenter(DAOGenerique<Auteur> model, ViewInterface<Auteur> view) {
+        super(model, view);
     }
     public void listeAllOuvrage(Auteur a) {
         List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrage(a);
@@ -56,22 +21,22 @@ public class AuteurPresenter {
         else view.affList(ouvr);
     }
 
-    public void listeAllOuvrageByType(Auteur a, TypeOuvrage to) {
-        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByType(a, to);
+    /*public void listeAllOuvrageByType(Auteur a) {
+        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByType(a);
         if(ouvr==null || ouvr.isEmpty()) view.affMsg("aucun ouvrage trouvé");
         else view.affList(ouvr);
     }
 
-    public void listeAllOuvrageByLivre(Auteur a, TypeLivre tl) {
-        List<Livre> livr = ((SpecialAuteur)model).listeAllOuvrageByLivre(a, tl);
-        if(livr==null || livr.isEmpty()) view.affMsg("aucun livre trouvé");
-        else view.afficheList(livr);
-
-    }
-
-    public void listeAllOuvrageByGenre(Auteur a, String genre) {
-        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByGenre(a,genre);
+    public void listeAllOuvrageByLivre(Auteur a) {
+        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByLivre(a);
         if(ouvr==null || ouvr.isEmpty()) view.affMsg("aucun ouvrage trouvé");
         else view.affList(ouvr);
+
     }
+
+    public void listeAllOuvrageByGenre(Auteur a) {
+        List<Ouvrage> ouvr = ((SpecialAuteur)model).listeAllOuvrageByGenre(a);
+        if(ouvr==null || ouvr.isEmpty()) view.affMsg("aucun ouvrage trouvé");
+        else view.affList(ouvr);
+    }*/
 }
