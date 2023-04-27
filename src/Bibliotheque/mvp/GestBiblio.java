@@ -20,6 +20,9 @@ public class GestBiblio {
     private DAOOuvrage om;
     private OuvrageViewInterface ov;
     private OuvragePresenter op;
+    private DAORayon rm;
+    private RayonViewInterface rv;
+    private RayonPresenter rp;
 
 
     public void gestion() {
@@ -35,7 +38,11 @@ public class GestBiblio {
         ov = new OuvrageViewConsole();
         op = new OuvragePresenter(om, ov);
 
-        List<String> loptions = Arrays.asList("lecteurs", "auteurs", "ouvrages", "fin");
+        rm = new RayonModel();
+        rv = new RayonViewConsole();
+        rp = new RayonPresenter(rm, rv);
+
+        List<String> loptions = Arrays.asList("lecteurs", "auteurs", "ouvrages","rayon" , "fin");
 
         do {
             try {
@@ -51,6 +58,9 @@ public class GestBiblio {
                         op.start();
                         break;
                     case 4:
+                        rp.start();
+                        break;
+                    case 5:
                         System.exit(0);
                         break;
 
