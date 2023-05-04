@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class CDFactoryBeta {
     protected Scanner sc= new Scanner(System.in);
-    public Ouvrage create() {
+    public Ouvrage create() throws Exception {
 
         System.out.println("titre");
         String titre= sc.nextLine();

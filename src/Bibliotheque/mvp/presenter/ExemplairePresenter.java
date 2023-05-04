@@ -1,15 +1,96 @@
 package Bibliotheque.mvp.presenter;
 
 import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.mvp.model.DAOGenerique;
+import Bibliotheque.metier.Lecteur;
+import Bibliotheque.metier.Ouvrage;
+import Bibliotheque.metier.Rayon;
+import Bibliotheque.mvp.model.DAO;
+import Bibliotheque.mvp.model.SpecialExemplaire;
 import Bibliotheque.mvp.view.ViewInterface;
 
-public class ExemplairePresenter extends Presenter<Exemplaire> {
+public class ExemplairePresenter extends Presenter<Exemplaire> implements SpecialExemplairePresenter {
+    private Presenter<Ouvrage> ouvragePresenter;
 
 
-    public ExemplairePresenter(DAOGenerique<Exemplaire> model, ViewInterface<Exemplaire> view) {
+
+    private Presenter<Rayon> rayonPresenter;
+
+    public ExemplairePresenter(DAO<Exemplaire> model, ViewInterface<Exemplaire> view) {
         super(model,view);
     }
 
 
+    @Override
+    public void setOuvragePresenter(Presenter<Ouvrage> ouvragePresenter){
+        this.ouvragePresenter=ouvragePresenter;
+    }
+    @Override
+    public void setRayonPresenter(Presenter<Rayon> rayonPresenter) {
+        this.rayonPresenter = rayonPresenter;
+    }
+    @Override
+    public Ouvrage choixOuvrage(){
+        return ouvragePresenter.selection();
+    }
+
+    @Override
+    public Rayon choixRayon(){
+        return rayonPresenter.selection();
+    }
+    @Override
+    public void modifierEtat(Exemplaire ex, String etat) {
+        ((SpecialExemplaire)model).modifierEtat(ex,etat);
+        view.affMsg("état modifié");
+    }
+
+
+    @Override
+    public void LecteurActuel(Exemplaire ex) {
+        Lecteur l =((SpecialExemplaire)model).lecteurActuel(ex);
+        if(l!=null) view.affMsg(l.toString());
+        else view.affMsg("aucun lecteur actuel");
+    }
+
+
+    @Override
+    public void lecteurs(Exemplaire ex) {
+
+       view.affList(((SpecialExemplaire)model).lecteurs(ex));
+    }
+
+
+    @Override
+    public void envoiMailLecteurActuel(Exemplaire ex) {
+        ((SpecialExemplaire)model).envoiMailLecteurActuel(ex);
+        view.affMsg("mail envoyé");
+
+    }
+
+
+    @Override
+    public void envoiMailLecteurs(Exemplaire ex) {
+        ((SpecialExemplaire)model).envoiMailLecteurs(ex);
+        view.affMsg("mails envoyés");
+
+    }
+
+
+    @Override
+    public void enRetard(Exemplaire ex) {
+        boolean retard = ((SpecialExemplaire)model).enRetard(ex);
+        view.affMsg(retard?"en retard":"pas en retard");
+    }
+
+
+    @Override
+    public void joursRetard(Exemplaire ex) {
+        view.affMsg("jours de retard = "+((SpecialExemplaire)model).joursRetard(ex));
+    }
+
+
+    @Override
+    public void  enLocation(Exemplaire ex) {
+       boolean enLoc =  ((SpecialExemplaire)model).enLocation(ex);
+       view.affMsg(enLoc?"en location":"pas en location");
+    }
 }

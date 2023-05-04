@@ -1,15 +1,15 @@
 package Bibliotheque.mvp.presenter;
 
-import Bibliotheque.mvp.model.DAOGenerique;
+import Bibliotheque.mvp.model.DAO;
 import Bibliotheque.mvp.view.ViewInterface;
 
 import java.util.List;
 
 public abstract class Presenter<T> {
-    protected  DAOGenerique<T> model;
+    protected  DAO<T> model;
     protected  ViewInterface<T> view;
 
-    public Presenter(DAOGenerique<T> model, ViewInterface<T> view) {
+    public Presenter(DAO<T> model, ViewInterface<T> view) {
         this.model = model;
         this.view = view;
         this.view.setPresenter(this);

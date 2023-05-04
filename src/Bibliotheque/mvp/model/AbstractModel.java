@@ -3,7 +3,7 @@ package Bibliotheque.mvp.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class AbstractModel<T> implements DAOGenerique<T>{
+public abstract class AbstractModel<T> implements DAO<T>{
 
     private List<T> ldatas = new ArrayList<>();
 

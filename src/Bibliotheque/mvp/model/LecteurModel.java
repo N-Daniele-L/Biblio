@@ -2,18 +2,29 @@ package Bibliotheque.mvp.model;
 
 import Bibliotheque.metier.Exemplaire;
 import Bibliotheque.metier.Lecteur;
+import Bibliotheque.metier.Rayon;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LecteurModel extends AbstractModel<Lecteur> implements SpecialLecteur {
     private int numLecteur = 0;
     private List<Lecteur> lecteurs = new ArrayList<>();
-
+    private Map<String,Lecteur> hml= new HashMap<>();
     public Lecteur add(Lecteur nl){
         Lecteur l = super.add(nl);
-        if(l!=null) l.setNumlecteur(++numLecteur);
+        if(l!=null) {
+            l.setNumlecteur(++numLecteur);
+            hml.put(l.getMail(),l);
+        }
         return  l;
+    }
+
+    @Override
+    public List<Exemplaire> listerExemplaires(Rayon r) {
+        return null;
     }
 
     @Override
@@ -24,5 +35,10 @@ public class LecteurModel extends AbstractModel<Lecteur> implements SpecialLecte
     @Override
     public List<Exemplaire> exemplairesLoues(Lecteur l) {
         return new ArrayList<>(l.listerExemplairesLoues());
+    }
+
+    @Override
+    public Lecteur lecParMail(String mail) {
+        return hml.get(mail);
     }
 }

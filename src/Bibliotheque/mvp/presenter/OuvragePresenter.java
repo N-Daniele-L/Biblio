@@ -1,28 +1,36 @@
 package Bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Exemplaire;
+
+import Bibliotheque.metier.Auteur;
 import Bibliotheque.metier.Ouvrage;
-import Bibliotheque.mvp.model.DAOGenerique;
+import Bibliotheque.mvp.model.DAO;
 import Bibliotheque.mvp.model.SpecialOuvrage;
 import Bibliotheque.mvp.view.ViewInterface;
 
-import java.util.List;
 
-public class OuvragePresenter extends Presenter<Ouvrage> {
+public class OuvragePresenter extends Presenter<Ouvrage> implements SpecialOuvragePresenter{
 
+    private Presenter<Auteur> auteurPresenter;
+    @Override
+    public void setAuteurPresenter(Presenter<Auteur> auteurPresenter) {
+        this.auteurPresenter = auteurPresenter;
+    }
 
-    public OuvragePresenter(DAOGenerique<Ouvrage> model, ViewInterface<Ouvrage> view) {
+    @Override
+    public Auteur choixAuteur(){
+       return  auteurPresenter.selection();
+    }
+
+    public OuvragePresenter(DAO<Ouvrage> model, ViewInterface<Ouvrage> view) {
         super(model,view);
     }
-    public void listerExemplaires(Ouvrage ouvrage) {
-        List<Exemplaire> ex = ((SpecialOuvrage)model).listerExemplaires(ouvrage);
-        if(ex==null || ex.isEmpty()) view.affMsg("aucun ouvrage trouvé");
-        else view.affList(ex);
+
+    @Override
+    public void  listerExemplaire(Ouvrage o){
+        view.affList(((SpecialOuvrage)model).listerExemplaire(o));
     }
-
-    public void listerExemplairesLocation(Ouvrage ouvrage) {
-        List<Exemplaire> ex = ((SpecialOuvrage)model).listerExemplairesLocation(ouvrage);
-        if(ex==null || ex.isEmpty()) view.affMsg("aucun ouvrage trouvé");
-        else view.affList(ex);    }
-
+    @Override
+    public void listerExemplaire(Ouvrage o, boolean enLocation){
+        view.affList(((SpecialOuvrage)model).listerExemplaire(o,enLocation));
+    }
 }
