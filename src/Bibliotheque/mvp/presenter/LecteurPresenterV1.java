@@ -1,10 +1,10 @@
-package Bibliotheque.mvp.presenter;
+package bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.mvp.model.DAO;
-import Bibliotheque.mvp.model.SpecialLecteur;
-import Bibliotheque.mvp.view.LecteurViewInterface;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Lecteur;
+import bibliotheque.mvp.model.DAO;
+import bibliotheque.mvp.model.SpecialLecteur;
+import bibliotheque.mvp.view.LecteurViewInterface;
 
 import java.util.List;
 

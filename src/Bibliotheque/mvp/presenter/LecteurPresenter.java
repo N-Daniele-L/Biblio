@@ -1,18 +1,19 @@
-package Bibliotheque.mvp.presenter;
+package bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.mvp.model.DAO;
-import Bibliotheque.mvp.model.SpecialLecteur;
-import Bibliotheque.mvp.view.ViewInterface;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Lecteur;
+import bibliotheque.mvp.model.DAO;
+import bibliotheque.mvp.model.SpecialLecteur;
+import bibliotheque.mvp.view.ViewInterface;
 
+import java.util.Comparator;
 import java.util.List;
 
 public class LecteurPresenter extends Presenter<Lecteur> implements SpecialLecteurPresenter {
 
 
-    public LecteurPresenter(DAO<Lecteur> model, ViewInterface<Lecteur> view) {
-        super(model,view);
+    public LecteurPresenter(DAO<Lecteur> model, ViewInterface<Lecteur> view, Comparator<Lecteur>cmp) {
+        super(model,view,cmp);
     }
 
 

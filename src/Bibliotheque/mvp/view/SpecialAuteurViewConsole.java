@@ -1,6 +1,6 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Auteur;
+import bibliotheque.metier.Auteur;
 
 public interface SpecialAuteurViewConsole {
     void listerGenre(Auteur a);

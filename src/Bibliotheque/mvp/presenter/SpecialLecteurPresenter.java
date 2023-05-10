@@ -1,6 +1,6 @@
-package Bibliotheque.mvp.presenter;
+package bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Lecteur;
+import bibliotheque.metier.Lecteur;
 
 public interface SpecialLecteurPresenter {
     void exemplairesEnLocation(Lecteur l);

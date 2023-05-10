@@ -1,6 +1,6 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.Rayon;
+import bibliotheque.metier.Rayon;
 
 import java.util.List;
 

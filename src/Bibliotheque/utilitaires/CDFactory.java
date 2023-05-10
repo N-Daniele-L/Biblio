@@ -1,12 +1,12 @@
-package Bibliotheque.utilitaires;
+package bibliotheque.utilitaires;
 
-import Bibliotheque.metier.CD;
-import Bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.CD;
+import bibliotheque.metier.Ouvrage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 
 public class CDFactory extends OuvrageFactory{

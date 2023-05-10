@@ -1,8 +1,7 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Ouvrage;
-import Bibliotheque.metier.Rayon;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Ouvrage;
 
 import java.util.List;
 
@@ -20,10 +19,5 @@ public class OuvrageModel extends AbstractModel<Ouvrage> implements SpecialOuvra
     @Override
     public double amendeRetard(Ouvrage o, int nj) {
         return o.amendeRetard(nj);
-    }
-
-    @Override
-    public List<Exemplaire> listerExemplaires(Rayon r) {
-        return null;
     }
 }

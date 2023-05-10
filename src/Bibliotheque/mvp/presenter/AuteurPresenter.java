@@ -1,17 +1,19 @@
-package Bibliotheque.mvp.presenter;
+package bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.*;
-import Bibliotheque.mvp.model.DAO;
-import Bibliotheque.mvp.model.SpecialAuteur;
-import Bibliotheque.mvp.view.ViewInterface;
+import bibliotheque.metier.Auteur;
+import bibliotheque.metier.TypeLivre;
+import bibliotheque.mvp.model.DAO;
+import bibliotheque.mvp.model.SpecialAuteur;
+import bibliotheque.mvp.view.ViewInterface;
 
+import java.util.Comparator;
 
 
 public class AuteurPresenter extends Presenter<Auteur> implements SpecialAuteurPresenter {
 
 
-    public AuteurPresenter(DAO<Auteur> model, ViewInterface<Auteur> view) {
-        super(model, view);
+    public AuteurPresenter(DAO<Auteur> model, ViewInterface<Auteur> view, Comparator<Auteur>cmp) {
+        super(model, view,cmp);
     }
     @Override
     public void  listerOuvrages(Auteur a) {

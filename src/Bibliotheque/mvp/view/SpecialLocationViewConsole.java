@@ -1,6 +1,6 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Location;
+import bibliotheque.metier.Location;
 
 public interface SpecialLocationViewConsole {
     void retour(Location l);

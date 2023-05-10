@@ -1,8 +1,8 @@
-package Bibliotheque.mvp.presenter;
+package bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.metier.Location;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Lecteur;
+import bibliotheque.metier.Location;
 
 public interface SpecialLocationPresenter {
     void setExemplairePresenter(Presenter<Exemplaire> exemplairePresenter);

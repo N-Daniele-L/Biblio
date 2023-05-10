@@ -1,6 +1,9 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.*;
+import bibliotheque.metier.Auteur;
+import bibliotheque.metier.Livre;
+import bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.TypeLivre;
 
 import java.util.List;
 

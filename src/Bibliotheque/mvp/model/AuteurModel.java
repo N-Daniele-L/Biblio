@@ -1,6 +1,9 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.*;
+import bibliotheque.metier.Auteur;
+import bibliotheque.metier.Livre;
+import bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.TypeLivre;
 
 import java.util.List;
 
@@ -18,10 +21,5 @@ public class AuteurModel extends AbstractModel<Auteur> implements SpecialAuteur 
     @Override
     public List<Ouvrage> listerOuvrages(Auteur a, String genre) {
         return a.listerOuvrages(genre);
-    }
-
-    @Override
-    public List<Exemplaire> listerExemplaires(Rayon r) {
-        return null;
     }
 }

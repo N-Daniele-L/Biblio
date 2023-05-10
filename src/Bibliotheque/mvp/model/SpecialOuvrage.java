@@ -1,7 +1,7 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Ouvrage;
 
 import java.util.List;
 public interface SpecialOuvrage {

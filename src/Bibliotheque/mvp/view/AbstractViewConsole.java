@@ -1,13 +1,10 @@
-    package Bibliotheque.mvp.view;
+    package bibliotheque.mvp.view;
 
-    import Bibliotheque.mvp.presenter.Presenter;
+    import bibliotheque.mvp.presenter.Presenter;
 
-    import java.util.ArrayList;
-    import java.util.Arrays;
-    import java.util.List;
-    import java.util.Scanner;
+    import java.util.*;
 
-    import static Bibliotheque.utilitaires.Utilitaire.*;
+    import static bibliotheque.utilitaires.Utilitaire.*;
 
     public abstract class AbstractViewConsole<T> implements ViewInterface<T> {
         protected Presenter<T> presenter;
@@ -20,8 +17,9 @@
         }
 
         @Override
-        public void setListDatas(List<T> ldatas) {
+        public void setListDatas(List<T> ldatas, Comparator<T> cmp) {
             this.ldatas = ldatas;
+            this.ldatas.sort(cmp);
             affListe(ldatas);
             menu();
         }

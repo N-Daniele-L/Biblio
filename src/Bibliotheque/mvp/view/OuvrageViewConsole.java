@@ -1,28 +1,19 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.*;
-import Bibliotheque.mvp.presenter.OuvragePresenter;
-import Bibliotheque.mvp.presenter.SpecialOuvragePresenter;
-import Bibliotheque.utilitaires.*;
+import bibliotheque.metier.Auteur;
+import bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.TypeOuvrage;
+import bibliotheque.mvp.presenter.OuvragePresenter;
+import bibliotheque.mvp.presenter.SpecialOuvragePresenter;
+import bibliotheque.utilitaires.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
-import static Bibliotheque.utilitaires.Utilitaire.modifyIfNotBlank;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 public class OuvrageViewConsole extends AbstractViewConsole<Ouvrage> implements SpecialOuvrageViewConsole {
-
-    @Override
-    public void setListDatas(List<Ouvrage> ldatas){
-        ldatas.sort((o1, o2) -> {
-            if(o1.getTitre().compareTo(o2.getTitre()) != 0) return (o1.getTitre().compareTo(o2.getTitre()));
-            return o1.getTitre().compareTo(o2.getTitre());
-        });
-        super.setListDatas(ldatas);
-    }
-
     @Override
     protected void rechercher() {
       //TODO rechercher ouvrage

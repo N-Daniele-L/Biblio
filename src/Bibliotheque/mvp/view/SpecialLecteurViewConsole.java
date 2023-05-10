@@ -1,6 +1,6 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Lecteur;
+import bibliotheque.metier.Lecteur;
 
 public interface SpecialLecteurViewConsole {
     void exemplairesLoues(Lecteur lec);

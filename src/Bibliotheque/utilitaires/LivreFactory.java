@@ -1,15 +1,15 @@
-package Bibliotheque.utilitaires;
+package bibliotheque.utilitaires;
 
-import Bibliotheque.metier.Livre;
-import Bibliotheque.metier.Ouvrage;
-import Bibliotheque.metier.TypeLivre;
+import bibliotheque.metier.Livre;
+import bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.TypeLivre;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.lireInt;
 
 public class LivreFactory extends OuvrageFactory{
       public Ouvrage addDetail(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre){

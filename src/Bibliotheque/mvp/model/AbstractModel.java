@@ -1,4 +1,4 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
 import java.util.ArrayList;
 import java.util.List;

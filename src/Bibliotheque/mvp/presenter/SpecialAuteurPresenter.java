@@ -1,7 +1,7 @@
-package Bibliotheque.mvp.presenter;
+package bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Auteur;
-import Bibliotheque.metier.TypeLivre;
+import bibliotheque.metier.Auteur;
+import bibliotheque.metier.TypeLivre;
 
 public interface SpecialAuteurPresenter {
     void listerOuvrages(Auteur a);

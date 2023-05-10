@@ -1,11 +1,13 @@
-package Bibliotheque.mvp.presenter;
+package bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.metier.Location;
-import Bibliotheque.mvp.model.DAO;
-import Bibliotheque.mvp.model.Speciallocation;
-import Bibliotheque.mvp.view.ViewInterface;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Lecteur;
+import bibliotheque.metier.Location;
+import bibliotheque.mvp.model.DAO;
+import bibliotheque.mvp.model.Speciallocation;
+import bibliotheque.mvp.view.ViewInterface;
+
+import java.util.Comparator;
 
 public class LocationPresenter extends Presenter<Location> implements SpecialLocationPresenter {
     private Presenter<Exemplaire> exemplairePresenter;
@@ -32,8 +34,8 @@ public class LocationPresenter extends Presenter<Location> implements SpecialLoc
     public Lecteur choixLecteur(){
         return lecteurPresenter.selection();
     }
-    public LocationPresenter(DAO<Location> model, ViewInterface<Location> view) {
-        super(model,view);
+    public LocationPresenter(DAO<Location> model, ViewInterface<Location> view, Comparator<Location>cmp) {
+        super(model,view,cmp);
     }
 
     @Override

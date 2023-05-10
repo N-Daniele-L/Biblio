@@ -1,4 +1,4 @@
-package Bibliotheque.metier;
+package bibliotheque.metier;
 
 
 import java.util.ArrayList;

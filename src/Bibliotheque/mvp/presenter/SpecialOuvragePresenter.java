@@ -1,7 +1,7 @@
-package Bibliotheque.mvp.presenter;
+package bibliotheque.mvp.presenter;
 
-import Bibliotheque.metier.Auteur;
-import Bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.Auteur;
+import bibliotheque.metier.Ouvrage;
 
 public interface SpecialOuvragePresenter {
     void setAuteurPresenter(Presenter<Auteur> auteurPresenter);

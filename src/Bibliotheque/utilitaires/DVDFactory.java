@@ -1,6 +1,7 @@
-package Bibliotheque.utilitaires;
+package bibliotheque.utilitaires;
 
-import Bibliotheque.metier.*;
+import bibliotheque.metier.DVD;
+import bibliotheque.metier.Ouvrage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -8,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.*;
 public class DVDFactory extends OuvrageFactory{
     public Ouvrage addDetail(String titre, int ageMin, LocalDate dateParution, double prixLocation, String langue, String genre){
         System.out.println("code : ");

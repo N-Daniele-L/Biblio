@@ -1,8 +1,7 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.metier.Rayon;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Lecteur;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,11 +19,6 @@ public class LecteurModel extends AbstractModel<Lecteur> implements SpecialLecte
             hml.put(l.getMail(),l);
         }
         return  l;
-    }
-
-    @Override
-    public List<Exemplaire> listerExemplaires(Rayon r) {
-        return null;
     }
 
     @Override

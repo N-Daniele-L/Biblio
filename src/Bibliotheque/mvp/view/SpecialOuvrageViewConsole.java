@@ -1,6 +1,6 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.Ouvrage;
 
 public interface SpecialOuvrageViewConsole {
     void enLocation(Ouvrage o, boolean enLocation);

@@ -1,7 +1,4 @@
-package Bibliotheque.mvp.model;
-
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Rayon;
+package bibliotheque.mvp.model;
 
 import java.util.List;
 
@@ -15,6 +12,4 @@ public interface DAO<T> {
     T read(T rech);
 
     List<T> getAll();
-
-    List<Exemplaire> listerExemplaires(Rayon r);
 }

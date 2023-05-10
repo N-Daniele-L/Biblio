@@ -1,8 +1,8 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
 
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.mvp.presenter.LecteurPresenter;
+import bibliotheque.metier.Lecteur;
+import bibliotheque.mvp.presenter.LecteurPresenter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 
 public class LecteurViewConsoleV1 {

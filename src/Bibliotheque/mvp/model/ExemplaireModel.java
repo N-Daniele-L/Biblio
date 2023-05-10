@@ -1,8 +1,7 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.metier.Rayon;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Lecteur;
 
 import java.util.List;
 
@@ -45,10 +44,5 @@ public class ExemplaireModel extends AbstractModel<Exemplaire> implements Specia
     @Override
     public boolean enLocation(Exemplaire ex) {
         return ex.enLocation();
-    }
-
-    @Override
-    public List<Exemplaire> listerExemplaires(Rayon r) {
-        return null;
     }
 }

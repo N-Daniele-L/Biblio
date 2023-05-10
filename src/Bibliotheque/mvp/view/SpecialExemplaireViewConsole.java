@@ -1,6 +1,6 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Exemplaire;
 
 public interface SpecialExemplaireViewConsole {
     void enLocation(Exemplaire ex);

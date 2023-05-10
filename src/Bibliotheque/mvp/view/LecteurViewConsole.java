@@ -1,29 +1,21 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
 
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.mvp.presenter.SpecialLecteurPresenter;
+import bibliotheque.metier.Lecteur;
+import bibliotheque.mvp.presenter.SpecialLecteurPresenter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 
 public class LecteurViewConsole extends AbstractViewConsole<Lecteur> implements SpecialLecteurViewConsole {
 
-    @Override
-    public void setListDatas(List<Lecteur> ldatas) {
-        ldatas.sort((o1, o2) -> {
-            if(o1.getNom().compareTo(o2.getNom()) != 0) return (o1.getNom().compareTo(o2.getNom()));
-            return (o1.getNom().compareTo(o2.getNom()));
-        });
-        super.setListDatas(ldatas);
-    }
 
-    protected  void rechercher() {
+  protected  void rechercher() {
       try{
         System.out.println("numLecteur : ");
         int idLecteur = lireInt();
@@ -145,6 +137,7 @@ public class LecteurViewConsole extends AbstractViewConsole<Lecteur> implements 
 
     @Override
     public void lecParMail() {
+      //ajout pour forcer push
         System.out.print("mail recherché : ");
         String mail= sc.next();
         ((SpecialLecteurPresenter)presenter).lecParMail(mail);

@@ -1,23 +1,15 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Rayon;
-import Bibliotheque.mvp.presenter.SpecialRayonPresenter;
+import bibliotheque.metier.Rayon;
+import bibliotheque.mvp.presenter.SpecialRayonPresenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 public class RayonViewConsole extends AbstractViewConsole<Rayon> implements SpecialRayonViewConsole {
-    @Override
-    public void setListDatas(List<Rayon> ldatas){
-        ldatas.sort((o1, o2) -> {
-            if(o1.getCodeRayon().compareTo(o2.getCodeRayon()) != 0) return (o1.getCodeRayon().compareTo(o2.getCodeRayon()));
-            return o1.getCodeRayon().compareTo(o2.getCodeRayon());
-        });
-        super.setListDatas(ldatas);
-    }
     @Override
     protected void rechercher() {
       System.out.println("code du rayon : ");

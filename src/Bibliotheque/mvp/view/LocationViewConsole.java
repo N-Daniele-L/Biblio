@@ -1,14 +1,16 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.*;
-import Bibliotheque.mvp.presenter.LocationPresenter;
-import Bibliotheque.mvp.presenter.SpecialLocationPresenter;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Lecteur;
+import bibliotheque.metier.Location;
+import bibliotheque.mvp.presenter.LocationPresenter;
+import bibliotheque.mvp.presenter.SpecialLocationPresenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 public class LocationViewConsole extends AbstractViewConsole<Location> implements SpecialLocationViewConsole {
     @Override

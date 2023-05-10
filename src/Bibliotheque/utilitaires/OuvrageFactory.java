@@ -1,12 +1,12 @@
-package Bibliotheque.utilitaires;
+package bibliotheque.utilitaires;
 
 
-import Bibliotheque.metier.Ouvrage;
+import bibliotheque.metier.Ouvrage;
 
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 public  abstract class OuvrageFactory {
    protected Scanner sc= new Scanner(System.in);

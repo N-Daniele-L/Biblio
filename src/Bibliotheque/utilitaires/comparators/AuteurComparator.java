@@ -1,6 +1,6 @@
-package Bibliotheque.utilitaires.comparators;
+package bibliotheque.utilitaires.comparators;
 
-import Bibliotheque.metier.Auteur;
+import bibliotheque.metier.Auteur;
 
 import java.util.Comparator;
 

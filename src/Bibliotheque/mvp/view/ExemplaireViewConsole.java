@@ -1,24 +1,16 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.*;
-import Bibliotheque.mvp.presenter.ExemplairePresenter;
-import Bibliotheque.mvp.presenter.SpecialExemplairePresenter;
+import bibliotheque.metier.*;
+import bibliotheque.mvp.presenter.ExemplairePresenter;
+import bibliotheque.mvp.presenter.SpecialExemplairePresenter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static Bibliotheque.utilitaires.Utilitaire.*;
+import static bibliotheque.utilitaires.Utilitaire.*;
 
 public class ExemplaireViewConsole extends AbstractViewConsole<Exemplaire> implements SpecialExemplaireViewConsole {
-    @Override
-    public void setListDatas(List<Exemplaire> ldatas){
-        ldatas.sort((o1,o2) -> {
-            if(o1.getMatricule().compareTo(o2.getMatricule()) != 0) return (o1.getMatricule().compareTo(o2.getMatricule()));
-            return  o1.getMatricule().compareTo(o2.getMatricule());
-        });
-        super.setListDatas(ldatas);
-    }
     @Override
     protected void rechercher() {
         try{

@@ -1,8 +1,8 @@
-package Bibliotheque.mvp.view;
+package bibliotheque.mvp.view;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Lecteur;
-import Bibliotheque.mvp.presenter.LecteurPresenterV1;
+import bibliotheque.metier.Exemplaire;
+import bibliotheque.metier.Lecteur;
+import bibliotheque.mvp.presenter.LecteurPresenterV1;
 
 import java.util.List;
 

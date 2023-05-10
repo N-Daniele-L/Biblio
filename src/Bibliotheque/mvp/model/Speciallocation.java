@@ -1,6 +1,6 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.*;
+import bibliotheque.metier.Location;
 
 public interface Speciallocation {
  public double calculerAmende(Location l);

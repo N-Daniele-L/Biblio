@@ -1,10 +1,6 @@
-package Bibliotheque.mvp.model;
+package bibliotheque.mvp.model;
 
-import Bibliotheque.metier.Exemplaire;
-import Bibliotheque.metier.Location;
-import Bibliotheque.metier.Rayon;
-
-import java.util.List;
+import bibliotheque.metier.Location;
 
 public class LocationModel extends AbstractModel<Location> implements Speciallocation{
     @Override
@@ -15,10 +11,5 @@ public class LocationModel extends AbstractModel<Location> implements Specialloc
     @Override
     public void enregistrerRetour(Location l) {
         l.enregistrerRetour();
-    }
-
-    @Override
-    public List<Exemplaire> listerExemplaires(Rayon r) {
-        return null;
     }
 }
